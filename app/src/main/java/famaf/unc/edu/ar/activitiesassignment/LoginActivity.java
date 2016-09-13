@@ -3,6 +3,8 @@ package famaf.unc.edu.ar.activitiesassignment;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -60,11 +62,21 @@ public class LoginActivity extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 attemptLogin();
+                finish();
             }
         });
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+    }
+
+    @Override
+    public void finish(){
+        Intent intent = new Intent();
+        String email = mEmailView.getText().toString();
+        intent.putExtra("email", email);
+        setResult(Activity.RESULT_OK, intent);
+        super.finish();
     }
 
     /**
